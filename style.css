@@ -127,3 +127,38 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.formAddBackground {
+  background: rgba(0, 0, 0, 0.5);
+  border: 0px none transparent;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s ease 0s;
+  visibility: visible;
+  border: none;
+  z-index: 2000;
+}
+
+.formAdd {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+  width: 350px;
+  height: 250px;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.formAdd legend {
+  color: white;
+}
+.inputelements > label {
+  color: white;
+}

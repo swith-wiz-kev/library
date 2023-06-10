@@ -8,5 +8,33 @@
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body></body>
+  <body>
+    <button class="formopen">+</button>
+    <div class="formAddBackground">
+      <form class="formAdd" action="" method="post">
+        <fieldset class="inputs">
+          <legend>Add a new book</legend>
+          <div class="inputgrid">
+            <div class="inputelements">
+              <label for="title">Title</label>
+              <input type="text" id="title" name="book_title" required />
+            </div>
+            <div class="inputelements">
+              <label for="author">Author</label>
+              <input type="text" id="author" name="book_author" required />
+            </div>
+            <div class="inputelements">
+              <label for="pages">Pages</label>
+              <input type="number" id="pages" name="book_pages" required />
+            </div>
+            <div class="inputelements">
+              <label for="read">Finished Reading?</label>
+              <input type="checkbox" id="read" name="book_read" required />
+            </div>
+          </div>
+        </fieldset>
+        <button type="submit">Add Book</button>
+      </form>
+    </div>
+  </body>
 </html>
