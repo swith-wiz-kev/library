@@ -11,6 +11,10 @@ function Book(title, author, pages, read, entryNumberLocal) {
   this.pages = pages;
   this.read = read;
   this.entryNumber = entryNumberLocal;
+  this.toggleRead = function () {
+    const currentState = this.read;
+    this.read = !currentState;
+  };
 }
 
 function addBookToLibrary(e) {
@@ -54,22 +58,36 @@ function addCard(i, parentElement) {
     const removeButton = document.createElement("button");
     removeButton.textContent = "X";
     removeButton.classList.add("cardRemove");
-    removeButton.dataset.entryNumberButton = myLibrary[i].entryNumber;
     removeButton.addEventListener("click", removeCard);
     card.appendChild(removeButton);
     addLineInfo(myLibrary[i].title, "Title: ", card, "cardText");
     addLineInfo(myLibrary[i].author, "Author: ", card, "cardText");
     addLineInfo(myLibrary[i].pages, "Pages: ", card, "cardText");
     addLineInfo(myLibrary[i].read, "Read: ", card, "cardText");
+    const toggleReadButton = document.createElement("button");
+    toggleReadButton.textContent = "Mark as Read/Unread";
+    toggleReadButton.classList.add("toggleRead");
+    toggleReadButton.addEventListener("click", toggleRead);
+    card.appendChild(toggleReadButton);
     parentElement.appendChild(card);
   }
 }
 
-function removeCard(e) {
-  const targetEntryNumber = e.target.dataset.entryNumberButton;
-  const targetElement = document.querySelector(
-    `[data-entry-number="${targetEntryNumber}"]`
+function toggleRead(e) {
+  const parentElement = e.target.parentElement;
+  const targetEntryNumber = parentElement.dataset.entryNumber;
+  const targetElement = parentElement.querySelector("div:last-of-type");
+  const targetLibraryIndex = myLibrary.findIndex(
+    (book) => book.entryNumber == targetEntryNumber
   );
+  const readState = myLibrary[targetLibraryIndex].read;
+  targetElement.textContent = "Read: " + !readState;
+  myLibrary[targetLibraryIndex].toggleRead();
+}
+
+function removeCard(e) {
+  const targetElement = e.target.parentElement;
+  const targetEntryNumber = targetElement.dataset.entryNumber;
   targetElement.remove();
   const targetLibraryIndex = myLibrary.findIndex(
     (book) => book.entryNumber == targetEntryNumber
