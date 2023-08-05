@@ -49,28 +49,29 @@ function isCreated(index) {
     return true;
   }
 }
+
 function addCard(i, parentElement) {
   if (isCreated(i)) {
   } else {
     const card = document.createElement("div");
     card.dataset.entryNumber = myLibrary[i].entryNumber;
     card.classList.add("card");
-    const removeButton = document.createElement("button");
-    removeButton.textContent = "X";
-    removeButton.classList.add("cardRemove");
-    removeButton.addEventListener("click", removeCard);
-    card.appendChild(removeButton);
+    createButton("X", "cardRemove", removeCard, card);
     addLineInfo(myLibrary[i].title, "Title: ", card, "cardText");
     addLineInfo(myLibrary[i].author, "Author: ", card, "cardText");
     addLineInfo(myLibrary[i].pages, "Pages: ", card, "cardText");
     addLineInfo(myLibrary[i].read, "Read: ", card, "cardText");
-    const toggleReadButton = document.createElement("button");
-    toggleReadButton.textContent = "Mark as Read/Unread";
-    toggleReadButton.classList.add("toggleRead");
-    toggleReadButton.addEventListener("click", toggleRead);
-    card.appendChild(toggleReadButton);
+    createButton("Mark as Read/Unread", "toggleRead", toggleRead, card);
     parentElement.appendChild(card);
   }
+}
+
+function createButton(buttonText, className, clickFunction, parentElement) {
+  const newButton = document.createElement("button");
+  newButton.textContent = buttonText;
+  newButton.classList.add(className);
+  newButton.addEventListener("click", clickFunction);
+  parentElement.appendChild(newButton);
 }
 
 function toggleRead(e) {
