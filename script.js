@@ -5,16 +5,19 @@ const authorField = document.querySelector("#author");
 const pagesField = document.querySelector("#pages");
 const readField = document.querySelector("#read");
 
-function Book(title, author, pages, read, entryNumberLocal) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.entryNumber = entryNumberLocal;
-  this.toggleRead = function () {
+class Book {
+  // class methods
+  constructor(title, author, pages, read, entryNumberLocal) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.entryNumber = entryNumberLocal;
+  }
+  toggleRead() {
     const currentState = this.read;
     this.read = !currentState;
-  };
+  }
 }
 
 function addBookToLibrary(e) {
